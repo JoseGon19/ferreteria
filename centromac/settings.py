@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tmxg=#3f2(vo=!l5=5#==6fb5n8#j-@e+$4xcl323ltop$xs)u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'centromac.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'btSfLIabUQQDHtkyBiYVHVBfPYgtnkEA',
+        'HOST': 'mysql.railway.internal',
+        'PORT': '3306',
     }
 }
 
