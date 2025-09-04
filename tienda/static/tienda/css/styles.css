@@ -1,0 +1,44 @@
+.btn-agregar {
+    background-color: #b6c96f;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-agregar:hover {
+    background-color: #29645e;
+    color: #e3dfe0;
+}
+/* Navbar personalizado */
+.navbar-custom {
+    background-color: #29645e;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link,
+.navbar-custom .btn-outline-light {
+    color: #e3dfe0;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover,
+.navbar-custom .btn-outline-light:hover {
+    color: #b6c96f;
+}
+
+/* Botón agregar al carrito */
+.btn-agregar {
+    background-color: #b6c96f;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-agregar:hover {
+    background-color: #29645e;
+    color: #e3dfe0;
+}
+
+/* Toasts */
+.toast-container {
+    z-index: 1055; /* por encima del navbar */
+}

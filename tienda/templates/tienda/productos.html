@@ -1,0 +1,61 @@
+{% extends 'tienda/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Nuestros Productos</h2>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                {% else %}
+                <img src="{% static 'img/no-image.png' %}" class="card-img-top" alt="Sin imagen">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion|truncatechars:60 }}</p>
+                    <p class="fw-bold">Q.{{ producto.precio }}</p>
+                    <p>Stock: {{ producto.stock }}</p>
+
+                    <form method="post" action="{% url 'agregar_carrito' producto.id %}">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <input type="number" name="cantidad" class="form-control text-center" value="1" min="1" max="{{ producto.stock }}">
+                        </div>
+                        <button type="submit" class="btn btn-agregar w-100 mt-auto">Agregar al carrito</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay productos disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if productos.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ productos.previous_page_number }}">Anterior</a>
+            </li>
+            {% endif %}
+
+            {% for num in productos.paginator.page_range %}
+            <li class="page-item {% if productos.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if productos.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ productos.next_page_number }}">Siguiente</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}
